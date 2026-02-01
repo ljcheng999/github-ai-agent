@@ -2,12 +2,15 @@ import os, requests
 from dotenv import load_dotenv
 from langchain_core.documents import Document
 
-
 load_dotenv()
 
 github_token = os.getenv("GITHUB_TOKEN", "")
 
 def fetch_github(owner: str, repo: str, endpoint: str) -> Document:
+  """
+  Currently, whenever this function gets called, it searches
+  the github repo for issues. It can extend more if needed
+  """
   url = f"https://api.github.com/repos/{owner}/{repo}/{endpoint}"
   headers = {
     "Authorization": f"Bearer {github_token}"
